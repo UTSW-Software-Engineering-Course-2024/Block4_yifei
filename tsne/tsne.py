@@ -9,8 +9,23 @@ def PrecisionAdj(
         perplexity : int = 30,
 ) -> Tuple[np.ndarray, np.ndarray]:
     """
-    This function is used to choose beta and the probability.
-    shape: (n,d) -> (n,n), (n,1)
+    Choose beta and the probability based on input data.
+    
+    Parameters
+    ----------
+    data : numpy.ndarray
+        input data with shape (n,d)
+    total : float
+        the total difference between the entropy and the perplexity
+    perplexity : int
+        the perplexity of the data
+
+    Returns
+    -------
+    probs : numpy.ndarray
+        the probability of the data with shape (n,n)
+    betas : numpy.ndarray
+        the beta of the data with shape (n,1)
     """
     # initialize
     betas = np.ones(data.shape[0])
@@ -93,8 +108,33 @@ def tsne(
         iters : int = 1000
 ) -> np.ndarray:
     """
-    This function is used to implement the t-SNE algorithm.
-    shape: (n,d) -> (n,2)
+    Implement the t-SNE algorithm.
+    
+    Parameters
+    ----------
+    data : numpy.ndarray
+        input data with shape (n,d)
+    no_dims : int
+        the dimension of the low-dimensional representation
+    perplexity : int
+        the perplexity of the data
+    total : float
+        the total difference between the entropy and the perplexity
+    initial_momentum : float
+        the initial momentum of the gradient descent
+    final_momentum : float
+        the final momentum of the gradient descent
+    eita : float
+        the learning rate of the gradient descent
+    min_gain : float
+        the minimum gain of the gradient descent
+    iters : int 
+        the number of iterations
+
+    Returns
+    -------
+    Y : numpy.ndarray
+        the low-dimensional representation of the data with shape (n,no_dims)
     """
 
     # initialize
