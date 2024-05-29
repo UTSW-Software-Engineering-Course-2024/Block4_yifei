@@ -180,15 +180,42 @@ def tsne(
     return Y
         
 if __name__ == "__main__":
-    print("Run Y = tsne(X, no_dims, perplexity) to perform t-SNE on your dataset.")
-    print("Running example on 2,500 MNIST digits...")
-    working_dir = os.getcwd() + "/Block4_yifei/tsne"
-    os.chdir(working_dir)
-    X = np.loadtxt("./mnist2500/mnist2500_X.txt")
-    labels = np.loadtxt("./mnist2500/mnist2500_labels.txt")
-    Y = tsne(X)
-    plt.scatter(Y[:, 0], Y[:, 1], 20, labels)
-    plt.savefig("./mnist_tsne.png")
+    import numpy as np
+from typing import Tuple
+import matplotlib.pyplot as plt
+import os
+import argparse
+
+# ... (rest of your code remains the same)
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Perform t-SNE on a dataset.')
+    parser.add_argument('--data', type=str, required=True, help='Path to the input data file')
+    parser.add_argument('--labels', type=str, help='Path to the labels file (optional)')
+    parser.add_argument('--output', type=str, default='tsne_output.png', help='Path to save the output image')
+    parser.add_argument('--no_dims', type=int, default=2, help='Number of dimensions for t-SNE')
+    parser.add_argument('--perplexity', type=int, default=30, help='Perplexity parameter for t-SNE')
+    args = parser.parse_args()
+
+    X = np.loadtxt(args.data)
+    labels = None
+    if args.labels:
+        labels = np.loadtxt(args.labels)
+
+    Y = tsne(X, no_dims=args.no_dims, perplexity=args.perplexity)
+
+    plt.figure(figsize=(8, 8))
+    if labels is not None:
+        plt.scatter(Y[:, 0], Y[:, 1], c=labels, cmap='viridis')
+        plt.colorbar(label='Labels')
+    else:
+        plt.scatter(Y[:, 0], Y[:, 1])
+    plt.title('t-SNE Visualization')
+    plt.xlabel('Dimension 1')
+    plt.ylabel('Dimension 2')
+    plt.tight_layout()
+    plt.savefig(args.output)
+    print(f"t-SNE visualization saved as {args.output}")
         
 
 
