@@ -17,4 +17,4 @@ pip install -r requirements.txt
 
 ## Quick Start
 
-To check how to use the function, go `tsne/run.ipynb` and see the demo. 
+To check how to use the function, go `tsne/run.ipynb` and see the demo.
