@@ -1,0 +1,7 @@
+tsne
+====
+
+.. toctree::
+   :maxdepth: 4
+
+   tsne

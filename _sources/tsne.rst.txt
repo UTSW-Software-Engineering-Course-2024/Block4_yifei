@@ -1,0 +1,15 @@
+tsne module
+-----------
+
+.. automodule:: tsne
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+GraphDR module
+--------------
+
+.. automodule:: GraphDR
+   :members:
+   :undoc-members:
+   :show-inheritance:
